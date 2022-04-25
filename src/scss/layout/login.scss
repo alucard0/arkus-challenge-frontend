@@ -1,0 +1,18 @@
+.login {
+  height: 100vh;
+  padding: 0 rem(16px);
+  @include display-flex;
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  &__form {
+    display: grid;
+    grid-gap: 16px;
+    width: 100%;
+    max-width: 320px;
+  }
+  &__title {
+    margin-bottom: rem(16px);
+    font-size: rem(24px);
+  }
+}

@@ -1,0 +1,14 @@
+.header {
+  display: grid;
+  padding: rem(16px);
+  background-color: $NM-blue;
+  color: $PM-white;
+  grid-gap: 16px;
+  &__title {
+    font-size: rem(32px);
+    font-weight: $regular;
+  }
+  @media (min-width: 545px) {
+    grid-template-columns: 1fr auto;
+  }
+}

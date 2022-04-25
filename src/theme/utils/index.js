@@ -1,0 +1,45 @@
+export const colors = {
+  'PL-red': '#FF6666',
+  'PM-red': '#FF0000',
+  'PD-red': '#660000',
+  'PM-white': '#FFFFFF',
+  'NM-blue': '#4946AD',
+  'NL-blue': '#8380CB',
+  'ND-blue': '#36347F',
+  'PM-black': '#101010',
+  'EM-red': '#FF2A22',
+  'EL-red': '#FFB4B5',
+  'ED-red': '#CB0003',
+  'WL-yellow': '#FFDFB0',
+  'WM-yellow': '#FFB547',
+  'WD-yellow': '#8D5000',
+  'WA-yellow': '#ED6C02',
+  'IM-blue': '#035D7B',
+  'ID-blue': '#00354D',
+  'IL-blue': '#ACDDF6',
+  'SM-green': '#5A811B',
+  'SD-green': '#376009',
+  'SL-green': '#C9DA9B',
+  'OH-green': '#386009',
+  'OS-green': '#4CAF50',
+}
+
+export const grey = {
+  50: '#F5FAFF',
+  100: '#EFF5FC',
+  200: '#E7EDF4',
+  300: '#D9DEE5',
+  400: '#B6BBC2',
+  500: '#979CA2',
+  600: '#6E7379',
+  700: '#5A5F65',
+  800: '#3C4046',
+  900: '#1B1F24',
+}
+
+export const fontWeights = {
+  light: 300,
+  regular: 400,
+  medium: 500,
+  bold: 700,
+}

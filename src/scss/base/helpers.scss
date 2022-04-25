@@ -1,0 +1,335 @@
+@mixin getIdealLineHeight($fontSize) {
+  line-height: ($fontSize * 1.618);
+}
+
+// Adds a browser prefix to the property
+@mixin css3-prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -khtml-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin box-shadow($x: 0, $y: 2px, $blur: 6px, $color: rgba($enconta-black, 0.3), $inset: '') {
+  @if ($inset != '') {
+    @include css3-prefix('box-shadow', $inset $x $y $blur $color);
+  } @else {
+    @include css3-prefix('box-shadow', $x $y $blur $color);
+  }
+}
+
+@mixin unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin menu-item {
+  position: relative;
+  max-height: inherit;
+  @include display-flex;
+  @include align-items(center);
+}
+
+@mixin display-flex {
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+}
+
+@mixin inline-flex {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex-direction($value: row) {
+  -webkit-flex-direction: $value;
+  -ms-flex-direction: $value;
+  flex-direction: $value;
+  @if $value == row-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+    -moz-box-direction: reverse;
+    -moz-box-orient: horizontal;
+  } @else if $value == column {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+  } @else if $value == column-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+    -moz-box-direction: reverse;
+    -moz-box-orient: vertical;
+  } @else {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -moz-box-orient: horizontal;
+  }
+}
+
+@mixin flex-wrap($value: nowrap) {
+  // No Webkit/FF Box fallback.
+  -webkit-flex-wrap: $value;
+  flex-wrap: $value;
+  @if $value == nowrap {
+    -ms-flex-wrap: none;
+  } @else {
+    -ms-flex-wrap: $value;
+  }
+}
+
+@mixin flex-flow(
+  $values: (
+    row nowrap,
+  )
+) {
+  // No Webkit/FF Box fallback.
+  -webkit-flex-flow: $values;
+  -ms-flex-flow: $values;
+  flex-flow: $values;
+}
+
+@mixin order($int: 0) {
+  -webkit-box-ordinal-group: $int + 1;
+  -moz-box-ordinal-group: $int + 1;
+  -webkit-order: $int;
+  -ms-flex-order: $int;
+  order: $int;
+}
+
+@mixin flex-grow($int: 1) {
+  -webkit-box-flex: $int;
+  -moz-box-flex: $int;
+  -webkit-flex-grow: $int;
+  -ms-flex: $int;
+  flex-grow: $int;
+}
+
+@mixin flex-shrink($int: 0) {
+  -webkit-flex-shrink: $int;
+  -moz-flex-shrink: $int;
+  -ms-flex: $int;
+  flex-shrink: $int;
+}
+
+@mixin flex-basis($value: auto) {
+  -webkit-flex-basis: $value;
+  flex-basis: $value;
+}
+
+@mixin flex($fg: 1, $fs: 0, $fb: auto) {
+  // Set a variable to be used by box-flex properties
+  $fg-boxflex: $fg;
+
+  -webkit-box: $fg-boxflex;
+  -moz-box: $fg-boxflex;
+  -webkit-flex: $fg $fs $fb;
+  -ms-flex: $fg $fs $fb;
+  flex: $fg $fs $fb;
+
+  // Box-Flex only supports a flex-grow value so lets grab the
+  // first item in the list and just return that.
+  @if type-of($fg) == 'list' {
+    $fg-boxflex: nth($fg, 1);
+  }
+}
+
+@mixin justify-content($value: flex-start) {
+  -webkit-justify-content: $value;
+  justify-content: $value;
+  @if $value == flex-start {
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    -ms-flex-pack: start;
+  } @else if $value == flex-end {
+    -webkit-box-pack: end;
+    -moz-box-pack: end;
+    -ms-flex-pack: end;
+  } @else if $value == space-between {
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+  } @else if $value == space-around {
+    -ms-flex-pack: distribute;
+  } @else {
+    -webkit-box-pack: $value;
+    -moz-box-pack: $value;
+    -ms-flex-pack: $value;
+  }
+}
+
+@mixin align-items($value: stretch) {
+  -webkit-align-items: $value;
+  align-items: $value;
+  @if $value == flex-start {
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -webkit-box-align: end;
+    -moz-box-align: end;
+    -ms-flex-align: end;
+  } @else {
+    -webkit-box-align: $value;
+    -moz-box-align: $value;
+    -ms-flex-align: $value;
+  }
+}
+
+@mixin align-self($value: auto) {
+  // No Webkit Box Fallback.
+  -webkit-align-self: $value;
+  align-self: $value;
+  @if $value == flex-start {
+    -ms-flex-item-align: start;
+  } @else if $value == flex-end {
+    -ms-flex-item-align: end;
+  } @else {
+    -ms-flex-item-align: $value;
+  }
+}
+
+@mixin align-content($value: stretch) {
+  // No Webkit Box Fallback.
+  -webkit-align-content: $value;
+  align-content: $value;
+  @if $value == flex-start {
+    -ms-flex-line-pack: start;
+  } @else if $value == flex-end {
+    -ms-flex-line-pack: end;
+  } @else {
+    -ms-flex-line-pack: $value;
+  }
+}
+
+@mixin transition($properties...) {
+  @if length($properties) >= 1 {
+    @include css3-prefix('transition', $properties);
+  } @else {
+    @include css3-prefix('transition', 'all 0.3s ease-in-out 0s');
+  }
+}
+
+@mixin background-gradient(
+  $position: top,
+  $startColor: $enconta-white,
+  $endColor: $enconta-light-gray
+) {
+  background-color: $startColor;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from($startColor),
+    to($endColor)
+  );
+  background-image: -webkit-linear-gradient($position, $startColor, $endColor);
+  background-image: -moz-linear-gradient($position, $startColor, $endColor);
+  background-image: -ms-linear-gradient($position, $startColor, $endColor);
+  background-image: -o-linear-gradient($position, $startColor, $endColor);
+  background-image: linear-gradient(to $position, $startColor, $endColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}');
+}
+
+@mixin radial-gradient($startColor, $endColor) {
+  background: -moz-radial-gradient(center, circle cover, $startColor 0%, $endColor 100%);
+  background: -webkit-gradient(
+    radial,
+    center center,
+    0px,
+    center center,
+    100%,
+    color-stop(0%, $startColor),
+    color-stop(100%, $endColor)
+  );
+  background: -webkit-radial-gradient(center, circle cover, $startColor 0%, $endColor 100%);
+  background: -o-radial-gradient(center, circle cover, $startColor 0%, $endColor 100%);
+  background: -ms-radial-gradient(center, circle cover, $startColor 0%, $endColor 100%);
+  background: radial-gradient(circle, $startColor 0%, $endColor 100%);
+  background-color: $startColor;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}',GradientType=1);
+}
+
+@mixin transform($params) {
+  @include css3-prefix('transform', $params);
+}
+
+@mixin transform-origin($params) {
+  @include css3-prefix('transform-origin', $params);
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  @include css3-prefix('animation', $str);
+}
+
+@mixin border-radius($radius: 5px) {
+  @include css3-prefix('border-radius', $radius);
+}
+
+@mixin border-radius-per-side(
+  $topleft: null,
+  $topright: null,
+  $bottomright: null,
+  $bottomleft: null
+) {
+  @if $topleft != null and $topleft >= 0 {
+    @include css3-prefix('border-top-left-radius', $topleft);
+  }
+
+  @if $topright != null and $topright >= 0 {
+    @include css3-prefix('border-top-right-radius', $topright);
+  }
+
+  @if $bottomleft != null and $bottomleft >= 0 {
+    @include css3-prefix('border-bottom-left-radius', $bottomleft);
+  }
+
+  @if $bottomright != null and $bottomright >= 0 {
+    @include css3-prefix('border-bottom-right-radius', $bottomright);
+  }
+}
+
+@mixin backgroundImage($imageURL, $size: cover, $position: center) {
+  background: url($imageURL) no-repeat center $position;
+  @include background-size($size);
+}
+
+@mixin background-size($background-size) {
+  @include css3-prefix('background-size', $background-size);
+}
+
+@function stripUnit($value) {
+  @return $value / ($value * 0 + 1);
+}
+@function rem($pxValue) {
+  @return #{stripUnit($pxValue) / stripUnit($html-font-size)}rem;
+}

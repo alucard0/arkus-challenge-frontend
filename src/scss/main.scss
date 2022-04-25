@@ -1,0 +1,13 @@
+// *** Settings ***
+@import './base/colors';
+@import './base/variables';
+@import './base/helpers';
+@import './base/globals';
+
+// *** Layout ***
+@import './layout/page.scss';
+@import './layout/login';
+@import './layout/product';
+@import './layout/products';
+@import './layout/store';
+@import './layout/header.scss';

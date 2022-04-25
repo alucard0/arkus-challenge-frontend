@@ -1,0 +1,12 @@
+.store {
+  &__categories {
+    display: grid;
+    margin-top: rem(32px);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 32px;
+    @extend %page-layout;
+  }
+  &__category {
+    font-size: rem(24px);
+  }
+}
