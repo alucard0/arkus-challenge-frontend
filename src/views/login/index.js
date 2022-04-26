@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { fetchToken } from './loginSlice'
 import { connect } from 'react-redux'
 import { useAuth } from './utils'
+import md5 from 'MD5'
 
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -38,7 +39,7 @@ const Login = ({loginInformation, fetchToken}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    fetchToken(userData)
+    fetchToken({email, password: md5(password)})
   }
 
   const onChangeFields = (field) => (event) => {
