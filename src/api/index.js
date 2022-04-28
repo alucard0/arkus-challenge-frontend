@@ -1,7 +1,7 @@
 import axios from "axios"
 
 axios.defaults.headers.post['Content-Type'] ='application/json'
-const baseUrl = 'http://localhost/arkus-challenge-api/api'
+const baseUrl = 'http://localhost:3000/api'
 
 const handleServerErrors = ({response}) =>{
   if (response.ok) return response
