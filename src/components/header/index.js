@@ -8,7 +8,7 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Container from '@mui/material/Container'
 
-const Header = ({ text }) => {
+const Header = () => {
   const [anchorNav, setAnchorNav] = useState(null)
   const [anchorUser, setAnchorUser] = useState(null)
   let navigate = useNavigate()
