@@ -2,23 +2,23 @@ import { createSlice } from '@reduxjs/toolkit'
 import User from '@api/user'
 
 const initialState = {
-  refresh: '',
-  access: '',
-  errors:[]
+  token: '',
+  errors: '',
 }
 export const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
     setLoginInfo: (state, action) => {
-      const {payload: {refresh,access}} = action
-      state.refresh =  refresh 
-      state.access = access
+      const {
+        payload: { token },
+      } = action
+      state.token = token
     },
-    setErrors:(state,action) => {
-     state.errors =[...action.payload]
+    setErrors: (state, action) => {
+      state.errors = action.payload
     },
-    reset: () => initialState
+    reset: () => initialState,
   },
 })
 
@@ -26,15 +26,16 @@ export const fetchToken = (userData) => {
   return async (dispatch) => {
     await User.Login(userData)
       .then(({ data }) => {
-        const { refresh, access, errors } = data
-        if(!!errors){
-          dispatch(setErrors(errors))
+        const { token, message } = data
+        if (!!message) {
+          dispatch(setErrors(message))
         } else {
-          dispatch(setLoginInfo({ refresh, access }))
+          dispatch(setLoginInfo({ token }))
         }
       })
       .catch((error) => {
-        console.error(error)
+        const { message } = error.data
+        dispatch(setErrors(message))
       })
   }
 }

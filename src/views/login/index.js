@@ -8,7 +8,7 @@ import md5 from 'MD5'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
-const Login = ({loginInformation, fetchToken}) => {
+const Login = ({ loginInformation, fetchToken }) => {
   let navigate = useNavigate()
   let location = useLocation()
   let auth = useAuth()
@@ -17,13 +17,14 @@ const Login = ({loginInformation, fetchToken}) => {
     password: 'test',
   })
   const { email, password } = userData
-  let from = '/editar-menu'
-  const hasError = loginInformation.errors.length>0
-  const {message: errorMessage} = hasError?loginInformation.errors[0]:{message:''}
+  let from = '/dashboard'
+  const hasError = !!loginInformation.errors.length > 0
+  const errorMessage = hasError ? loginInformation.errors : ''
 
   useEffect(() => {
-    if (!!loginInformation.access) {
-      auth.signIn(loginInformation, () => {
+    if (!!loginInformation.token) {
+      const { token } = loginInformation
+      auth.signIn({ token }, () => {
         navigate(from, { replace: true })
       })
     }
@@ -39,7 +40,7 @@ const Login = ({loginInformation, fetchToken}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    fetchToken({email, password: md5(password)})
+    fetchToken({ email, password: md5(password) })
   }
 
   const onChangeFields = (field) => (event) => {
@@ -49,13 +50,13 @@ const Login = ({loginInformation, fetchToken}) => {
 
   return (
     <div className={'login'}>
-      <p className={'login__title'}>Iniciar sesión</p>
+      <p className={'login__title'}>Login</p>
       <form onSubmit={handleSubmit} className={'login__form'}>
         <TextField
           data-testid="email"
           fullWidth
           size="small"
-          label="Correo electrónico"
+          label="Email"
           type="email"
           id="email"
           value={email}
@@ -68,14 +69,14 @@ const Login = ({loginInformation, fetchToken}) => {
         <TextField
           id="password"
           size="small"
-          label="Contraseña"
+          label="Password"
           type="password"
           value={password}
           autoComplete="current-password"
           onChange={onChangeFields('password')}
         />
-        <Button type="submit" size="medium" data-testid="button_ingresar" variant="contained">
-          Ingresar
+        <Button type="submit" size="medium" data-testid="button_submit" variant="contained">
+          Submit
         </Button>
       </form>
     </div>

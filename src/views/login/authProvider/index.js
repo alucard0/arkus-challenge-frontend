@@ -6,18 +6,18 @@ import { reset } from '../loginSlice'
 import { useDispatch } from 'react-redux'
 
 const AuthProvider = ({ children }) => {
-  const [authToken, setAuthToken] = useLocalStorage('authToken',{access:'', refresh:''})
-  let [hasSession, setSession] = useState(!!authToken.access)
+  const [authToken, setAuthToken] = useLocalStorage('authToken', { token: '' })
+  let [hasSession, setSession] = useState(!!authToken.token)
   const dispatch = useDispatch()
 
-  let signIn = async(token, callback) => {
+  let signIn = async (token, callback) => {
     await setAuthToken(token)
-    setSession(!!token.access)
+    setSession(!!token.token)
     callback()
   }
 
-  let signOut = async(callback) => {
-    await setAuthToken({access:'', refresh:''})
+  let signOut = async (callback) => {
+    await setAuthToken({ token: '' })
     dispatch(reset())
     callback()
   }

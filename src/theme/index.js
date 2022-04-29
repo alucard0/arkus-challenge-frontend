@@ -39,11 +39,11 @@ export const theme = createTheme({
       disabled: rgba(colors['PM-black'], 0.5)
     },
     action: {
-      active: colors['PM-orange'],
-      hover: colors['PM-orange'],
+      active: colors['PM-red'],
+      hover: colors['PM-red'],
       hoverOpacity: 0.08,
-      focus: colors['PM-orange'],
-      selected: colors['PM-orange'],
+      focus: colors['PM-red'],
+      selected: colors['PM-red'],
       disabled: colors['NL-blue'],
       disabledBackground: rgba(colors['PM-black'], 0.08),
       disabledOpacity: 0.08

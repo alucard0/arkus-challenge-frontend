@@ -1,7 +1,7 @@
-import {Post} from '../'
+import { Post } from '../'
 
 export default class User {
-  static Login(userData){
-    return Post('/user/login',userData)
+  static Login(userData) {
+    return Post('/auth', userData)
   }
 }
