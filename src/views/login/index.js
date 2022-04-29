@@ -23,8 +23,8 @@ const Login = ({ loginInformation, fetchToken }) => {
 
   useEffect(() => {
     if (!!loginInformation.token) {
-      const { token } = loginInformation
-      auth.signIn({ token }, () => {
+      const { errors, ...userInformation } = loginInformation
+      auth.signIn(userInformation, () => {
         navigate(from, { replace: true })
       })
     }
