@@ -11,6 +11,7 @@ import AppLayout from './views/appLayout'
 import Login from './views/login'
 import AuthProvider from './views/login/authProvider'
 import RequireAuth from './views/login/requireAuth'
+import Users from './views/users'
 
 import reportWebVitals from './reportWebVitals'
 
@@ -31,7 +32,7 @@ render(
             >
               <Route path="dashboard" element={<p>home</p>} />
               <Route path="profile" element={<p>profile</p>} />
-              <Route path="users" element={<p>users</p>} />
+              <Route path="users" element={<Users />} />
               <Route path="accounts" element={<p>accounts</p>} />
               <Route path="teams" element={<p>teams</p>} />
             </Route>

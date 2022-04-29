@@ -1,0 +1,39 @@
+import React from 'react'
+
+import Button from '@mui/material/Button'
+
+const roleTranslator ={
+  admin: 'Administrator',
+  user: 'Regular user'
+}
+const Item = ({ name: userName, email, role }) => (
+  <div className="users__item">
+    <div className="users__information">
+      <p>
+        <span className="users__label">Name: </span>
+        <span className="users__text">{userName}</span>
+      </p>
+      <p>
+        <span className="users__label">Email: </span> <span className="users__text">{email}</span>
+      </p>
+      <p>
+        <span className="users__label">Role: </span> <span className="users__text">{ roleTranslator[role]}</span>
+      </p>
+    </div>
+    <div className="users__actions">
+      <Button type="button" size="medium" data-testid="button_edit" variant="contained">
+        Edit
+      </Button>
+      <Button
+        color="secondary"
+        type="button"
+        size="medium"
+        data-testid="button_delete"
+        variant="contained">
+        Delete
+      </Button>
+    </div>
+  </div>
+)
+
+export default Item

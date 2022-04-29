@@ -1,0 +1,48 @@
+.users {
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    @extend %page-layout;
+    @media (min-width: 1200px) {
+      grid-template-columns: 960px;
+    }
+  }
+  &__list {
+    border: solid 1px $gray-400;
+    @include border-radius(2px);
+  }
+  &__item {
+    display: grid;
+    grid-template-areas:
+      'information'
+      'actions';
+    align-items: center;
+    padding: rem(16px);
+    &:not(:last-of-type) {
+      border-bottom: solid 1px $gray-400;
+    }
+    @media (min-width: 600px) {
+      grid-template-areas: 'information actions';
+    }
+  }
+  &__information {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    grid-area: information;
+  }
+  &__label {
+    font-weight: $medium;
+  }
+  &__actions {
+    grid-area: actions;
+    margin-top: rem(16px);
+    gap: 16px;
+    @include display-flex;
+    @include justify-content(flex-end);
+    @media (min-width: 600px) {
+      margin-top: 0;
+    }
+  }
+}
