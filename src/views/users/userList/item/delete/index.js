@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { deleteUser} from '../../../userSlice'
+import { deleteUser } from '../../../userSlice'
 
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
@@ -23,23 +23,24 @@ const Delete = ({ email, deleteUser }) => {
   const handleDeleteUser = () => {
     handleClose()
     deleteUser(email)
-
   }
 
   return (
     <>
-      <Button type="button" size="medium" onClick={handleClickOpen} data-testid="button_delete" variant="contained">
+      <Button
+        type="button"
+        size="medium"
+        onClick={handleClickOpen}
+        data-testid="button_delete"
+        variant="contained">
         Delete
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Delete user"}
-        </DialogTitle>
+        aria-describedby="alert-dialog-description">
+        <DialogTitle id="alert-dialog-title">{'Delete user'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {`Would you like delete user with email ${email}`}
