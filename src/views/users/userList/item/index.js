@@ -2,6 +2,8 @@ import React from 'react'
 
 import Button from '@mui/material/Button'
 
+import Delete from './delete'
+
 const roleTranslator ={
   admin: 'Administrator',
   user: 'Regular user'
@@ -21,17 +23,10 @@ const Item = ({ name: userName, email, role }) => (
       </p>
     </div>
     <div className="users__actions">
-      <Button type="button" size="medium" data-testid="button_edit" variant="contained">
+      <Button  color="secondary" type="button" size="medium" data-testid="button_edit" variant="contained">
         Edit
       </Button>
-      <Button
-        color="secondary"
-        type="button"
-        size="medium"
-        data-testid="button_delete"
-        variant="contained">
-        Delete
-      </Button>
+      <Delete email={email}/>
     </div>
   </div>
 )

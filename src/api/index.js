@@ -30,6 +30,8 @@ const request = (method, endpoint, params, data) => {
       return !!params ? axios.get(url, params) : axios.get(url)
     case 'PUT':
       return axios.put(url, data)
+    case 'DELETE':
+      return axios.delete(`${url}/${data}`)
     default: {
       console.error('Not method supported')
     }
@@ -46,4 +48,8 @@ export const Post = (endpoint, data = null) => {
 
 export const Put = (endpoint, data = null) => {
   return request('PUT', endpoint, {}, data)
+}
+
+export const Delete = (endpoint, data = null) => {
+  return request('DELETE', endpoint, {}, data)
 }

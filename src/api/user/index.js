@@ -1,4 +1,4 @@
-import { Post, Get } from '../'
+import { Post, Get, Delete } from '../'
 
 export default class User {
   static Login(userData) {
@@ -6,5 +6,8 @@ export default class User {
   }
   static GetAll() {
     return Get('/user')
+  }
+  static DeleteUser(email) {
+    return Delete('/user',email)
   }
 }

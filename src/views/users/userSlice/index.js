@@ -26,6 +26,25 @@ export const fetchUsers = () => {
   }
 }
 
+export const deleteUser = (email) =>{
+  return async (dispatch, getState) => {
+    await API.DeleteUser(email)
+      .then(() => {
+        let { users } = getState()
+        const newUserList  = updateUserList(users.users, email)
+
+        dispatch(setUsers(newUserList))
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+}
+
+const updateUserList =(users,currentEmail) =>{
+ return users.filter(({email}) => email !== currentEmail )
+}
+
 export const { setUsers } = userSlice.actions
 
 export default userSlice.reducer
