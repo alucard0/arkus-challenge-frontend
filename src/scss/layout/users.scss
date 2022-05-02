@@ -56,6 +56,11 @@
     &-submit {
       justify-self: end;
     }
+    &-actions {
+      gap: 16px;
+      @include display-flex;
+      @include justify-content(flex-end);
+    }
   }
   &__title {
     @extend %section-title;

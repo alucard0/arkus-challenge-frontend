@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -22,6 +23,7 @@ const NewUserForm = () => {
   const { name, email, password, englishLevel, urlCv, techKnowledge, role } = newUser
   const englishLevelKeys = Object.keys(ENGLISH_LEVELS)
   const roleKeys = Object.keys(USER_ROLES)
+  const navigate = useNavigate();
 
   const onChangeFields = (field) => (event) => {
     const { value } = event.target
@@ -29,6 +31,10 @@ const NewUserForm = () => {
   }
 
   const handleSubmit = () => {}
+
+  const handleCancel = () => {
+    navigate(-1)
+  }
 
   return (
     <div className="users__layout">
@@ -43,7 +49,6 @@ const NewUserForm = () => {
           value={name}
           onChange={onChangeFields('name')}
           required
-          autoComplete={'name'}
         />
         <TextField
           data-testid="email"
@@ -54,7 +59,6 @@ const NewUserForm = () => {
           value={email}
           onChange={onChangeFields('email')}
           required
-          autoComplete={'email'}
         />
         <TextField
           data-testid="password"
@@ -121,14 +125,27 @@ const NewUserForm = () => {
             maxLength: 500,
           }}
         />
-        <Button
-          type="submit"
-          size="medium"
-          data-testid="button_submit"
-          variant="contained"
-          className="users__form-submit">
-          Create
-        </Button>
+        <div className="users__form-actions">
+          <Button
+            type="button"
+            size="medium"
+            onClick={handleCancel}
+            data-testid="button_submit"
+            variant="contained"
+            className="users__form-submit">
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            color="secondary"
+            size="medium"
+            data-testid="button_submit"
+            variant="contained"
+            className="users__form-submit">
+            Create
+          </Button>
+        </div>
+
       </form>
     </div>
   )
