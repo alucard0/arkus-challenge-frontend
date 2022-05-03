@@ -180,7 +180,6 @@ const NewUserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingl
 }
 
 const mapStateToProps = ({ users }) => {
-  console.log(users)
   return { user: users.user }
 }
 
