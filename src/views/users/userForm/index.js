@@ -23,6 +23,7 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
   const navigate = useNavigate()
   const params = useParams()
   const isCreate = isEmptyObject(params)
+  const title = isCreate ? 'Create new user' : 'Edit user'
 
   useEffect(() => {
     if (!isCreate) {
@@ -59,7 +60,7 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
 
   return (
     <div className="users__layout">
-      <p className="users__title">Create new user</p>
+      <p className="users__title">{title}</p>
       <form onSubmit={handleSubmit} className={'users__form'}>
         <TextField
           data-testid="name"
