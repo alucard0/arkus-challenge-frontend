@@ -29,11 +29,11 @@ const request = (method, endpoint, params, data) => {
     case 'POST':
       return axios.post(url, JSON.stringify(data)).catch(handleServerErrors)
     case 'GET':
-      return !!params ? axios.get(url, params) : axios.get(url)
+      return !!params ? axios.get(url, {params:params}).catch(handleServerErrors) : axios.get(url).catch(handleServerErrors)
     case 'PUT':
-      return axios.put(url, data)
+      return axios.put(url, data).catch(handleServerErrors)
     case 'DELETE':
-      return axios.delete(`${url}/${data}`)
+      return axios.delete(`${url}/${data}`).catch(handleServerErrors)
     default: {
       console.error('Not method supported')
     }

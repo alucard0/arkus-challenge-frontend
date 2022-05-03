@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Button from '@mui/material/Button'
 import Delete from './delete'
+import Edit from './edit'
 
 import { USER_ROLES } from '@utils/catalogs'
 
@@ -21,14 +21,7 @@ const Item = ({ name: userName, email, role }) => (
       </p>
     </div>
     <div className="users__actions">
-      <Button
-        color="secondary"
-        type="button"
-        size="medium"
-        data-testid="button_edit"
-        variant="contained">
-        Edit
-      </Button>
+      <Edit email={email} />
       <Delete email={email} />
     </div>
   </div>

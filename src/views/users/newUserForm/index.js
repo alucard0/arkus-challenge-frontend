@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { createUser } from '../userSlice'
+import { createUser, fetchSingleUser, resetUser, updateSingleUser } from '../userSlice'
+import { isEmptyObject } from '@utils'
 
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -12,20 +13,29 @@ import Select from '@mui/material/Select'
 
 import { ENGLISH_LEVELS, USER_ROLES } from '@utils/catalogs'
 
-const NewUserForm = ({ createUser }) => {
+const NewUserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUser }) => {
   const [newUser, setNewUser] = useState({
-    email: '',
-    name: '',
-    password: '',
-    englishLevel: '',
-    urlCv: '',
-    techKnowledge: '',
-    role: '',
+    ...user,
   })
-  const { name, email, password, englishLevel, urlCv, techKnowledge, role } = newUser
+  const { name, email, password, english_level, url_cv, tech_knowledge, role } = newUser
   const englishLevelKeys = Object.keys(ENGLISH_LEVELS)
   const roleKeys = Object.keys(USER_ROLES)
   const navigate = useNavigate()
+  const params = useParams()
+  const isCreate = isEmptyObject(params)
+
+  useEffect(() => {
+    if (!isCreate) {
+      fetchSingleUser(params)
+    }
+    return () => {
+      resetUser()
+    }
+  }, [])
+
+  useEffect(() => {
+    setNewUser({ ...user })
+  }, [user])
 
   const onChangeFields = (field) => (event) => {
     const { value } = event.target
@@ -34,10 +44,13 @@ const NewUserForm = ({ createUser }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-
-    createUser(newUser).then(() => {
-      navigate(-1)
-    })
+    if (isCreate) {
+      createUser(newUser).then(() => {
+        navigate(-1)
+      })
+    } else {
+      updateSingleUser(newUser)
+    }
   }
 
   const handleCancel = () => {
@@ -68,24 +81,29 @@ const NewUserForm = ({ createUser }) => {
           onChange={onChangeFields('email')}
           required
         />
-        <TextField
-          data-testid="password"
-          size="small"
-          fullWidth
-          label="Password"
-          type="password"
-          value={password}
-          required
-          onChange={onChangeFields('password')}
-        />
+        {isCreate && (
+          <TextField
+            data-testid="password"
+            size="small"
+            fullWidth
+            label="Password"
+            type="password"
+            value={password}
+            required
+            onChange={onChangeFields('password')}
+          />
+        )}
+
         <FormControl fullWidth>
-          <InputLabel id="english-level" required>English level</InputLabel>
+          <InputLabel id="english-level" required>
+            English level
+          </InputLabel>
           <Select
             labelId="english-level"
-            value={englishLevel}
+            value={english_level}
             label="English level"
-            onChange={onChangeFields('englishLevel')}
-            data-testid="englishLevel">
+            onChange={onChangeFields('english_level')}
+            data-testid="english_level">
             {englishLevelKeys.map((key) => (
               <MenuItem key={key} value={key}>
                 {ENGLISH_LEVELS[key]}
@@ -94,17 +112,19 @@ const NewUserForm = ({ createUser }) => {
           </Select>
         </FormControl>
         <TextField
-          data-testid="urlCV"
+          data-testid="url_cv"
           fullWidth
           size="small"
           label="Resume link"
           type="text"
-          value={urlCv}
-          onChange={onChangeFields('urlCv')}
+          value={url_cv}
+          onChange={onChangeFields('url_cv')}
           required
         />
         <FormControl fullWidth>
-          <InputLabel id="role" required>Role</InputLabel>
+          <InputLabel id="role" required>
+            Role
+          </InputLabel>
           <Select
             labelId="role"
             value={role}
@@ -119,13 +139,13 @@ const NewUserForm = ({ createUser }) => {
           </Select>
         </FormControl>
         <TextField
-          data-testid="techKnowledge"
+          data-testid="tech_knowledge"
           fullWidth
           size="small"
           label="Tech knowledge"
           type="text"
-          value={techKnowledge}
-          onChange={onChangeFields('techKnowledge')}
+          value={tech_knowledge}
+          onChange={onChangeFields('tech_knowledge')}
           required
           multiline
           minRows={2}
@@ -159,4 +179,14 @@ const NewUserForm = ({ createUser }) => {
   )
 }
 
-export default connect(null, { createUser })(NewUserForm)
+const mapStateToProps = ({ users }) => {
+  console.log(users)
+  return { user: users.user }
+}
+
+export default connect(mapStateToProps, {
+  createUser,
+  fetchSingleUser,
+  resetUser,
+  updateSingleUser,
+})(NewUserForm)

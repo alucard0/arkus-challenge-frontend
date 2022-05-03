@@ -35,6 +35,7 @@ render(
               <Route path="profile" element={<p>profile</p>} />
               <Route path="users" element={<Users />} />
               <Route path="users/new" element={<NewUserForm />} />
+              <Route path="users/:email/edit" element={<NewUserForm />} />
               <Route path="accounts" element={<p>accounts</p>} />
               <Route path="teams" element={<p>teams</p>} />
             </Route>

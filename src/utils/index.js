@@ -1,5 +1,5 @@
-export const formatCurrency=(amount)=>{
-  const options = { style: 'currency', currency: 'MXN' };
-  const numberFormat = new Intl.NumberFormat('es-MX', options);
-  return numberFormat.format(amount)
+export const isEmptyObject = (object) => {
+  return (
+    object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype
+  )
 }
