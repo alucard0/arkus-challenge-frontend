@@ -1,8 +1,8 @@
-.users {
+.accounts {
   &__layout {
     @extend %page-layout;
   }
-  &__button-new-user {
+  &__button-new-account {
     justify-self: end;
   }
   &__list {
@@ -42,21 +42,5 @@
     @media (min-width: 600px) {
       margin-top: 0;
     }
-  }
-  &__form {
-    display: grid;
-    gap: 16px;
-    margin-top: rem(24px);
-    &-submit {
-      justify-self: end;
-    }
-    &-actions {
-      gap: 16px;
-      @include display-flex;
-      @include justify-content(flex-end);
-    }
-  }
-  &__title {
-    @extend %section-title;
   }
 }

@@ -13,6 +13,7 @@ import AuthProvider from './views/login/authProvider'
 import RequireAuth from './views/login/requireAuth'
 import Users from './views/users'
 import UserForm from './views/users/userForm'
+import Accounts from './views/accounts'
 
 import reportWebVitals from './reportWebVitals'
 
@@ -36,7 +37,7 @@ render(
               <Route path="users" element={<Users />} />
               <Route path="users/new" element={<UserForm />} />
               <Route path="users/:email/edit" element={<UserForm />} />
-              <Route path="accounts" element={<p>accounts</p>} />
+              <Route path="accounts" element={<Accounts />} />
               <Route path="teams" element={<p>teams</p>} />
             </Route>
             <Route path="login" element={<Login />} />

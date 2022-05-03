@@ -1,7 +1,11 @@
 %page-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
   padding: rem(16px) rem(32px);
   @media (min-width: 1200px) {
     padding: rem(16px);
+    grid-template-columns: 960px;
   }
 }
 
