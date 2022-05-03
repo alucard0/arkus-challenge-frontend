@@ -13,7 +13,7 @@ import Select from '@mui/material/Select'
 
 import { ENGLISH_LEVELS, USER_ROLES } from '@utils/catalogs'
 
-const NewUserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUser }) => {
+const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUser }) => {
   const [newUser, setNewUser] = useState({
     ...user,
   })
@@ -188,4 +188,4 @@ export default connect(mapStateToProps, {
   fetchSingleUser,
   resetUser,
   updateSingleUser,
-})(NewUserForm)
+})(UserForm)
