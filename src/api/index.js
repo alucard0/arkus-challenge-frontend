@@ -6,10 +6,12 @@ const baseUrl = 'http://localhost:3000/api'
 const handleServerErrors = ({ response }) => {
   if (response.ok) return response
   switch (response.status) {
+    case 400:
+      throw response
     case 404:
       throw response
     case 401:
-      return response
+      throw response
     case 500:
       break
   }

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import API from '@api/user'
+import md5 from 'MD5'
 
 export const userSlice = createSlice({
   name: 'users',
@@ -43,6 +44,24 @@ export const deleteUser = (email) =>{
 
 const updateUserList =(users,currentEmail) =>{
  return users.filter(({email}) => email !== currentEmail )
+}
+
+export const createUser = ({email,name,password,englishLevel,urlCv,techKnowledge,role}) =>{
+  const newUser = {
+    name,
+    email,
+    password: md5(password),
+    english_level: englishLevel,
+    url_cv: urlCv,
+    tech_knowledge: techKnowledge,
+    role
+  }
+  return async (dispatch, getState) => {
+     await API.CreateUser(newUser)
+      .catch((error) => {
+        console.error(error)
+      })
+  }
 }
 
 export const { setUsers } = userSlice.actions

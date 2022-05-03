@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { createUser } from '../userSlice'
 
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -10,7 +12,7 @@ import Select from '@mui/material/Select'
 
 import { ENGLISH_LEVELS, USER_ROLES } from '@utils/catalogs'
 
-const NewUserForm = () => {
+const NewUserForm = ({ createUser }) => {
   const [newUser, setNewUser] = useState({
     email: '',
     name: '',
@@ -23,14 +25,20 @@ const NewUserForm = () => {
   const { name, email, password, englishLevel, urlCv, techKnowledge, role } = newUser
   const englishLevelKeys = Object.keys(ENGLISH_LEVELS)
   const roleKeys = Object.keys(USER_ROLES)
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const onChangeFields = (field) => (event) => {
     const { value } = event.target
     setNewUser((prevUserData) => ({ ...prevUserData, [field]: value }))
   }
 
-  const handleSubmit = () => {}
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    createUser(newUser).then(() => {
+      navigate(-1)
+    })
+  }
 
   const handleCancel = () => {
     navigate(-1)
@@ -67,10 +75,11 @@ const NewUserForm = () => {
           label="Password"
           type="password"
           value={password}
+          required
           onChange={onChangeFields('password')}
         />
         <FormControl fullWidth>
-          <InputLabel id="english-level">English level</InputLabel>
+          <InputLabel id="english-level" required>English level</InputLabel>
           <Select
             labelId="english-level"
             value={englishLevel}
@@ -95,7 +104,7 @@ const NewUserForm = () => {
           required
         />
         <FormControl fullWidth>
-          <InputLabel id="role">Role</InputLabel>
+          <InputLabel id="role" required>Role</InputLabel>
           <Select
             labelId="role"
             value={role}
@@ -145,10 +154,9 @@ const NewUserForm = () => {
             Create
           </Button>
         </div>
-
       </form>
     </div>
   )
 }
 
-export default NewUserForm
+export default connect(null, { createUser })(NewUserForm)

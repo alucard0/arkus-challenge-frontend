@@ -7,6 +7,9 @@ export default class User {
   static GetAll() {
     return Get('/user')
   }
+  static CreateUser(user) {
+    return Post('/user', user)
+  }
   static DeleteUser(email) {
     return Delete('/user',email)
   }
