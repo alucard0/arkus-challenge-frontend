@@ -14,10 +14,10 @@ export default class Account {
   static CreateAccount(account) {
     return Post('/account', account)
   }
-  static DeleteUser(id) {
+  static DeleteAccount(id) {
     return Delete('/account', id)
   }
-  static UpdateUser(account) {
+  static UpdateAccount(account) {
     return Put('/account', account)
   }
 }

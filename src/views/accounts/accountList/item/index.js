@@ -1,7 +1,7 @@
 import React from 'react'
 
-//import Delete from './delete'
-//import Edit from './edit'
+import Delete from './delete'
+import Edit from './edit'
 
 const Item = ({ name: accountName, client_name:clientName, id }) => (
   <div className="accounts__item">
@@ -15,8 +15,8 @@ const Item = ({ name: accountName, client_name:clientName, id }) => (
       </p>
     </div>
     <div className="accounts__actions">
-      {/*<Edit id={id} />
-      <Delete id={id} />*/}
+      <Edit id={id} />
+      <Delete id={id} accountName={accountName} />
     </div>
   </div>
 )

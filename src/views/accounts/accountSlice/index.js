@@ -41,6 +41,25 @@ export const fetchAccounts = () => {
   }
 }
 
+export const deleteAccount = (id) => {
+  return async (dispatch, getState) => {
+    await API.DeleteAccount(id)
+      .then(() => {
+        let { account:{accountList} } = getState()
+        const newAccountList = updateAccountList(accountList, id)
+
+        dispatch(setAccountList(newAccountList))
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+}
+
+const updateAccountList = (accountList, currentId) => {
+  return accountList.filter(({ id }) => id !== currentId)
+}
+
 export const { setAccountList, setAccount, resetAccount } = accountSlice.actions
 
 export default accountSlice.reducer
