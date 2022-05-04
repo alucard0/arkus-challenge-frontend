@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { createAccount, fetchSingleAccount, resetAccount, updateSingleAccount } from '../accountSlice'
+import {
+  createAccount,
+  fetchSingleAccount,
+  resetAccount,
+  updateSingleAccount,
+} from '../accountSlice'
 import { isEmptyObject } from '@utils'
 
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
-
-const AccountForm = ({ createAccount, fetchSingleAccount, account, resetAccount, updateSingleAccount }) => {
+const AccountForm = ({
+  createAccount,
+  fetchSingleAccount,
+  account,
+  resetAccount,
+  updateSingleAccount,
+}) => {
   const [newAccount, setNewAccount] = useState({
     ...account,
   })
-  const { name, client_name:clientName } = newAccount
+  const { name, client_name: clientName } = newAccount
   const navigate = useNavigate()
   const params = useParams()
   const isCreate = isEmptyObject(params)
@@ -21,7 +31,7 @@ const AccountForm = ({ createAccount, fetchSingleAccount, account, resetAccount,
 
   useEffect(() => {
     if (!isCreate) {
-      const {id} = params
+      const { id } = params
       fetchSingleAccount(id)
     }
     return () => {
@@ -77,7 +87,7 @@ const AccountForm = ({ createAccount, fetchSingleAccount, account, resetAccount,
           onChange={onChangeFields('client_name')}
           required
         />
- 
+
         <div className="accounts__form-actions">
           <Button
             type="button"

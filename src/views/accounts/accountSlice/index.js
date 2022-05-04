@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import API from '@api/account'
 
 const defaultAccount = {
-  name:'',
-  client_name:'',
-  id:null
+  name: '',
+  client_name: '',
+  id: null,
 }
 
 export const accountSlice = createSlice({
@@ -24,7 +24,7 @@ export const accountSlice = createSlice({
     },
     resetAccount: (state, action) => {
       state.accountData = { ...defaultAccount }
-    }
+    },
   },
 })
 
@@ -54,12 +54,13 @@ export const fetchSingleAccount = (id) => {
   }
 }
 
-
 export const deleteAccount = (id) => {
   return async (dispatch, getState) => {
     await API.DeleteAccount(id)
       .then(() => {
-        let { account:{accountList} } = getState()
+        let {
+          account: { accountList },
+        } = getState()
         const newAccountList = updateAccountList(accountList, id)
 
         dispatch(setAccountList(newAccountList))
@@ -74,7 +75,7 @@ const updateAccountList = (accountList, currentId) => {
   return accountList.filter(({ id }) => id !== currentId)
 }
 
-export const createAccount =(newAccount) =>{
+export const createAccount = (newAccount) => {
   return async (dispatch, getState) => {
     await API.CreateAccount(newAccount).catch((error) => {
       console.error(error)
@@ -89,7 +90,6 @@ export const updateSingleAccount = (account) => {
     })
   }
 }
-
 
 export const { setAccountList, setAccount, resetAccount } = accountSlice.actions
 
