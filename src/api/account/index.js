@@ -6,7 +6,7 @@ export default class Account {
     return Get('/account')
   }
   static GetSingleAccount(id) {
-    return Get('/account', id)
+    return Get(`/account/${id}`)
   }
   static GetAssignedAccounts(){
     return Get('/account/assigned_accounts')

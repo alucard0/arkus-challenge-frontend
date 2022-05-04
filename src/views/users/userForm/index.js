@@ -24,6 +24,7 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
   const params = useParams()
   const isCreate = isEmptyObject(params)
   const title = isCreate ? 'Create new user' : 'Edit user'
+  const primaryButtonText = isCreate ? 'Create' : 'Update'
 
   useEffect(() => {
     if (!isCreate) {
@@ -172,7 +173,7 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
             data-testid="button_submit"
             variant="contained"
             className="users__form-submit">
-            Create
+            {primaryButtonText}
           </Button>
         </div>
       </form>

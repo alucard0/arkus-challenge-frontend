@@ -11,7 +11,7 @@ export const accountSlice = createSlice({
   name: 'account',
   initialState: {
     accountList: [],
-    account: {
+    accountData: {
       ...defaultAccount,
     },
   },
@@ -20,10 +20,10 @@ export const accountSlice = createSlice({
       state.accountList = [...action.payload]
     },
     setAccount: (state, action) => {
-      state.account = { ...action.payload }
+      state.accountData = { ...action.payload }
     },
     resetAccount: (state, action) => {
-      state.account = { ...defaultAccount }
+      state.accountData = { ...defaultAccount }
     }
   },
 })
@@ -40,6 +40,20 @@ export const fetchAccounts = () => {
       })
   }
 }
+
+export const fetchSingleAccount = (id) => {
+  return async (dispatch) => {
+    await API.GetSingleAccount(id)
+      .then(({ data }) => {
+        const { account } = data
+        dispatch(setAccount(account))
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+}
+
 
 export const deleteAccount = (id) => {
   return async (dispatch, getState) => {
@@ -59,6 +73,23 @@ export const deleteAccount = (id) => {
 const updateAccountList = (accountList, currentId) => {
   return accountList.filter(({ id }) => id !== currentId)
 }
+
+export const createAccount =(newAccount) =>{
+  return async (dispatch, getState) => {
+    await API.CreateAccount(newAccount).catch((error) => {
+      console.error(error)
+    })
+  }
+}
+
+export const updateSingleAccount = (account) => {
+  return async (dispatch, getState) => {
+    await API.UpdateAccount(account).catch((error) => {
+      console.error(error)
+    })
+  }
+}
+
 
 export const { setAccountList, setAccount, resetAccount } = accountSlice.actions
 

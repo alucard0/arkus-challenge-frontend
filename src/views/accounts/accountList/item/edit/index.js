@@ -7,7 +7,7 @@ const Edit = ({id}) => {
   const navigate = useNavigate()
 
   const handleEditUser=()=>{
-    navigate(`/users/${id}/edit`)
+    navigate(`/accounts/${id}/edit`)
   }
 
   return  <Button
