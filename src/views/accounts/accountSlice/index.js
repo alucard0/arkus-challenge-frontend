@@ -5,6 +5,7 @@ const defaultAccount = {
   name: '',
   client_name: '',
   id: null,
+  has_team: false,
 }
 
 export const accountSlice = createSlice({
@@ -75,9 +76,16 @@ const updateAccountList = (accountList, currentId) => {
   return accountList.filter(({ id }) => id !== currentId)
 }
 
-export const createAccount = (newAccount) => {
+export const createAccount = (newAccount, newManager) => {
+  const { has_team: hasTeam } = newAccount
+  let data = {
+    account: newAccount,
+  }
+  if (hasTeam === 'true') {
+    data.manager = newManager
+  }
   return async (dispatch, getState) => {
-    await API.CreateAccount(newAccount).catch((error) => {
+    await API.CreateAccount(data).catch((error) => {
       console.error(error)
     })
   }

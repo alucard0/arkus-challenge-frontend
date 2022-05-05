@@ -11,6 +11,12 @@ import { isEmptyObject } from '@utils'
 
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+import Manager from './manager'
 
 const AccountForm = ({
   createAccount,
@@ -22,7 +28,8 @@ const AccountForm = ({
   const [newAccount, setNewAccount] = useState({
     ...account,
   })
-  const { name, client_name: clientName } = newAccount
+  const [newManager, setNewManager] = useState('')
+  const { name, client_name: clientName, has_team: hasTeam } = newAccount
   const navigate = useNavigate()
   const params = useParams()
   const isCreate = isEmptyObject(params)
@@ -51,7 +58,7 @@ const AccountForm = ({
   const handleSubmit = (event) => {
     event.preventDefault()
     if (isCreate) {
-      createAccount(newAccount).then(() => {
+      createAccount(newAccount, newManager).then(() => {
         navigate(-1)
       })
     } else {
@@ -87,6 +94,20 @@ const AccountForm = ({
           onChange={onChangeFields('client_name')}
           required
         />
+
+        <FormControl>
+          <FormLabel id="team-configuration">Would you like add manager and team?</FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="team-configuration"
+            name="team-configuration-chooser"
+            value={hasTeam}
+            onChange={onChangeFields('has_team')}>
+            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+            <FormControlLabel value="false" control={<Radio />} label="No" />
+          </RadioGroup>
+        </FormControl>
+        {hasTeam === 'true' && <Manager setNewManager={setNewManager} />}
 
         <div className="accounts__form-actions">
           <Button
