@@ -17,6 +17,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl'
 import FormLabel from '@mui/material/FormLabel'
 import Manager from './manager'
+import Team from './team'
 
 const AccountForm = ({
   createAccount,
@@ -29,6 +30,11 @@ const AccountForm = ({
     ...account,
   })
   const [newManager, setNewManager] = useState('')
+  const [newTeam, setNewTeam] = useState({
+    name:'',
+    members:[]
+  })
+  const {name:teamName} = newTeam
   const { name, client_name: clientName, has_team: hasTeam } = newAccount
   const navigate = useNavigate()
   const params = useParams()
@@ -58,7 +64,7 @@ const AccountForm = ({
   const handleSubmit = (event) => {
     event.preventDefault()
     if (isCreate) {
-      createAccount(newAccount, newManager).then(() => {
+      createAccount(newAccount, newManager, newTeam).then(() => {
         navigate(-1)
       })
     } else {
@@ -107,7 +113,9 @@ const AccountForm = ({
             <FormControlLabel value="false" control={<Radio />} label="No" />
           </RadioGroup>
         </FormControl>
-        {hasTeam === 'true' && <Manager setNewManager={setNewManager} />}
+        {hasTeam === 'true' && <><Manager setNewManager={setNewManager} />
+          <Team setNewTeam={setNewTeam} teamName={teamName}/>
+        </>}
 
         <div className="accounts__form-actions">
           <Button

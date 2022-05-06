@@ -76,13 +76,14 @@ const updateAccountList = (accountList, currentId) => {
   return accountList.filter(({ id }) => id !== currentId)
 }
 
-export const createAccount = (newAccount, newManager) => {
+export const createAccount = (newAccount, newManager, newTeam) => {
   const { has_team: hasTeam } = newAccount
   let data = {
     account: newAccount,
   }
   if (hasTeam === 'true') {
     data.manager = newManager
+    data.team = newTeam
   }
   return async (dispatch, getState) => {
     await API.CreateAccount(data).catch((error) => {

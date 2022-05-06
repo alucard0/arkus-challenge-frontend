@@ -28,6 +28,7 @@ const Manager = ({ fetchAvailableUsers, availableUsers, setNewManager }) => {
       onChange={onChange}
       id="select-manager"
       options={options}
+      size="small"
       isOptionEqualToValue={(option, value) => option.value === value.value}
       renderInput={(params) => <TextField required {...params} label="Account Manager" />}
     />
