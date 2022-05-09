@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchSingleUser, resetUser } from '../../../users/userSlice'
 
 import Link from '@mui/material/Link'
 
 const Profile = ({ email, fetchSingleUser, resetUser, user }) => {
-  const { english_level: englishLevel, tech_knowledge: techKnowledge, url_cv: urlCv } = user
+  const [infoUser, setInfoUser] = useState(user)
+
+  const { english_level: englishLevel, tech_knowledge: techKnowledge, url_cv: urlCv } = infoUser
 
   useEffect(() => {
     fetchSingleUser({ email })
@@ -13,6 +15,12 @@ const Profile = ({ email, fetchSingleUser, resetUser, user }) => {
       resetUser()
     }
   }, [])
+
+  useEffect(() => {
+    if (email === user.email) {
+      setInfoUser(user)
+    }
+  }, [user])
 
   return (
     <div className="teams__profile">
