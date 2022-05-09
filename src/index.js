@@ -15,6 +15,7 @@ import Users from './views/users'
 import UserForm from './views/users/userForm'
 import Accounts from './views/accounts'
 import AccountForm from './views/accounts/accountForm'
+import Teams from './views/teams'
 
 import reportWebVitals from './reportWebVitals'
 
@@ -41,7 +42,7 @@ render(
               <Route path="accounts" element={<Accounts />} />
               <Route path="accounts/new" element={<AccountForm />} />
               <Route path="accounts/:id/edit" element={<AccountForm />} />
-              <Route path="teams" element={<p>teams</p>} />
+              <Route path="teams" element={<Teams />} />
             </Route>
             <Route path="login" element={<Login />} />
           </Routes>

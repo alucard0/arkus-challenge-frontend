@@ -1,0 +1,46 @@
+.teams {
+  &__layout {
+    @extend %page-layout;
+  }
+  &__list {
+    margin-top: rem(16px);
+    border: solid 1px $gray-400;
+    @include border-radius(2px);
+  }
+  &__item {
+    display: grid;
+    grid-template-areas:
+      'general-information'
+      'user-information'
+      'profile'
+      'button';
+    align-items: center;
+    padding: rem(16px);
+    &:not(:last-of-type) {
+      border-bottom: solid 1px $gray-400;
+    }
+    @media (min-width: 600px) {
+      grid-template-areas:
+        'general-information user-information'
+        'button profile';
+      grid-template-columns: 1fr 2fr;
+      gap: 16px;
+    }
+  }
+  &__label {
+    font-weight: $medium;
+  }
+  &__general-information {
+    grid-area: general-information;
+  }
+  &__user-information {
+    grid-area: user-information;
+  }
+  &__profile {
+    grid-area: profile;
+  }
+  &__profile-button {
+    grid-area: button;
+    justify-self: start;
+  }
+}
