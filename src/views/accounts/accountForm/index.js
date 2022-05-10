@@ -25,16 +25,19 @@ const AccountForm = ({
   account,
   resetAccount,
   updateSingleAccount,
+  managerInfo,
+  teamInfo,
+  teamNameInfo,
 }) => {
   const [newAccount, setNewAccount] = useState({
     ...account,
   })
-  const [newManager, setNewManager] = useState('')
+  const [newManager, setNewManager] = useState(managerInfo)
   const [newTeam, setNewTeam] = useState({
-    name:'',
-    members:[]
+    name: teamNameInfo,
+    members: [],
   })
-  const {name:teamName} = newTeam
+  const { name: teamName, members } = newTeam
   const { name, client_name: clientName, has_team: hasTeam } = newAccount
   const navigate = useNavigate()
   const params = useParams()
@@ -55,6 +58,20 @@ const AccountForm = ({
   useEffect(() => {
     setNewAccount({ ...account })
   }, [account])
+
+  useEffect(() => {
+    setNewTeam((prevTeam) => ({ ...prevTeam, name: teamNameInfo }))
+  }, [teamNameInfo])
+
+  useEffect(() => {
+    const formattedTeamInfo = teamInfo.map(({ name, email }) => ({ label: name, value: email }))
+    setNewTeam((prevTeam) => ({ ...prevTeam, members: formattedTeamInfo }))
+  }, [teamInfo])
+
+  useEffect(() => {
+    const { name: label, email: value } = managerInfo
+    setNewManager({ label, value })
+  }, [managerInfo])
 
   const onChangeFields = (field) => (event) => {
     const { value } = event.target
@@ -113,9 +130,16 @@ const AccountForm = ({
             <FormControlLabel value="false" control={<Radio />} label="No" />
           </RadioGroup>
         </FormControl>
-        {hasTeam === 'true' && <><Manager setNewManager={setNewManager} />
-          <Team setNewTeam={setNewTeam} teamName={teamName}/>
-        </>}
+        {hasTeam === 'true' && (
+          <>
+            <Manager
+              setNewManager={setNewManager}
+              managerInfo={managerInfo}
+              newManager={newManager}
+            />
+            <Team setNewTeam={setNewTeam} teamName={teamName} members={members} />
+          </>
+        )}
 
         <div className="accounts__form-actions">
           <Button
@@ -143,7 +167,8 @@ const AccountForm = ({
 }
 
 const mapStateToProps = ({ account }) => {
-  return { account: account.accountData }
+  const { accountData, manager: managerInfo, team: teamInfo, teamName: teamNameInfo } = account
+  return { account: accountData, managerInfo, teamInfo, teamNameInfo }
 }
 
 export default connect(mapStateToProps, {

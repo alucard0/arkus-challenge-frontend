@@ -5,9 +5,17 @@ import { fetchAvailableUsers } from './managerSlice'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 
-const Manager = ({ fetchAvailableUsers, availableUsers, setNewManager }) => {
-  const [selectedManager, setSelectedManager] = useState('')
+const Manager = ({
+  fetchAvailableUsers,
+  availableUsers,
+  setNewManager,
+  managerInfo,
+  newManager,
+}) => {
   const options = availableUsers.map(({ name, email }) => ({ label: name, value: email }))
+  if (managerInfo.name !== '') {
+    options.push({ label: managerInfo.name, value: managerInfo.email })
+  }
 
   useEffect(() => {
     fetchAvailableUsers()
@@ -15,21 +23,18 @@ const Manager = ({ fetchAvailableUsers, availableUsers, setNewManager }) => {
 
   const onChange = (event, user) => {
     if (user) {
-      const { value } = user
-      setSelectedManager(value)
-      setNewManager(value)
-    } else {
-      setSelectedManager('')
+      setNewManager(user)
     }
   }
 
   return (
     <Autocomplete
+      value={newManager}
       onChange={onChange}
       id="select-manager"
       options={options}
       size="small"
-      isOptionEqualToValue={(option, value) => option.value === value.value}
+      isOptionEqualToValue={(option, value) => option.label === value.label}
       renderInput={(params) => <TextField required {...params} label="Account Manager" />}
     />
   )

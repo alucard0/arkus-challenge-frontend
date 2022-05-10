@@ -8,6 +8,11 @@ const defaultAccount = {
   has_team: false,
 }
 
+const defaultManager = {
+  name: '',
+  email: '',
+}
+
 export const accountSlice = createSlice({
   name: 'account',
   initialState: {
@@ -15,6 +20,11 @@ export const accountSlice = createSlice({
     accountData: {
       ...defaultAccount,
     },
+    manager: {
+      ...defaultManager,
+    },
+    team: [],
+    teamName: '',
   },
   reducers: {
     setAccountList: (state, action) => {
@@ -23,8 +33,20 @@ export const accountSlice = createSlice({
     setAccount: (state, action) => {
       state.accountData = { ...action.payload }
     },
+    setManager: (state, action) => {
+      state.manager = { ...action.payload }
+    },
+    setTeam: (state, action) => {
+      state.team = [...action.payload]
+    },
+    setTeamName: (state, action) => {
+      state.teamName = action.payload
+    },
     resetAccount: (state, action) => {
       state.accountData = { ...defaultAccount }
+      state.team = []
+      state.manager = { ...defaultManager }
+      state.teamName = ''
     },
   },
 })
@@ -46,8 +68,19 @@ export const fetchSingleAccount = (id) => {
   return async (dispatch) => {
     await API.GetSingleAccount(id)
       .then(({ data }) => {
-        const { account } = data
+        const { account, manager, team, team_name: teamName } = data
+
         dispatch(setAccount(account))
+        if (!!manager) {
+          dispatch(setManager(manager))
+        }
+        if (!!team) {
+          dispatch(setTeam(team))
+        }
+        if (!!teamName) {
+          const { name } = teamName
+          dispatch(setTeamName(name))
+        }
       })
       .catch((error) => {
         console.error(error)
@@ -82,7 +115,7 @@ export const createAccount = (newAccount, newManager, newTeam) => {
     account: newAccount,
   }
   if (hasTeam === 'true') {
-    data.manager = newManager
+    data.manager = newManager.email
     data.team = newTeam
   }
   return async (dispatch, getState) => {
@@ -100,6 +133,7 @@ export const updateSingleAccount = (account) => {
   }
 }
 
-export const { setAccountList, setAccount, resetAccount } = accountSlice.actions
+export const { setAccountList, setAccount, setTeam, setManager, setTeamName, resetAccount } =
+  accountSlice.actions
 
 export default accountSlice.reducer

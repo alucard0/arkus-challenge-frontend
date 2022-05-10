@@ -5,7 +5,7 @@ import { fetchUsers } from '../../../users/userSlice'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 
-const Team = ({ fetchUsers, users, setNewTeam, teamName }) => {
+const Team = ({ fetchUsers, users, setNewTeam, teamName, members }) => {
   const options = users.map(({ name, email }) => ({ label: name, value: email }))
 
   useEffect(() => {
@@ -40,13 +40,14 @@ const Team = ({ fetchUsers, users, setNewTeam, teamName }) => {
         required
       />
       <Autocomplete
+        value={members}
         multiple
         onChange={onChangeTeamMembers}
         id="select-team-members"
         options={options}
         getOptionLabel={(option) => option.label}
         size="small"
-        isOptionEqualToValue={(option, value) => option.value === value.value}
+        isOptionEqualToValue={(option, value) => option.label === value.label}
         renderInput={(params) => <TextField {...params} label="Team members" />}
       />
     </>
