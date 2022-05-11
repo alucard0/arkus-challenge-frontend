@@ -115,7 +115,7 @@ export const createAccount = (newAccount, newManager, newTeam) => {
     account: newAccount,
   }
   if (hasTeam === 'true') {
-    data.manager = newManager.email
+    data.manager = newManager.value
     data.team = newTeam
   }
   return async (dispatch, getState) => {
@@ -125,9 +125,21 @@ export const createAccount = (newAccount, newManager, newTeam) => {
   }
 }
 
-export const updateSingleAccount = (account) => {
+export const updateSingleAccount = (account,manager, team) => {
   return async (dispatch, getState) => {
-    await API.UpdateAccount(account).catch((error) => {
+    const { has_team: hasTeam } = account
+    const{accountData:{has_team:hadTeam}} = getState().account
+
+    let data = {
+      account,
+    }
+    if (hasTeam === 'true') {
+      data.manager = manager.value
+      data.team = team
+      data.action = hadTeam === 'true' ? 'update' : 'create'
+    }
+    
+    await API.UpdateAccount(data).catch((error) => {
       console.error(error)
     })
   }

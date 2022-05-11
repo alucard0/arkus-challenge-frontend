@@ -85,7 +85,7 @@ const AccountForm = ({
         navigate(-1)
       })
     } else {
-      updateSingleAccount(newAccount)
+      updateSingleAccount(newAccount, newManager , newTeam)
     }
   }
 
