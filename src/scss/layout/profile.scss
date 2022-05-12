@@ -1,0 +1,19 @@
+.profile {
+  &__layout {
+    @extend %page-layout;
+  }
+  &__container {
+    display: grid;
+    margin-top: rem(16px);
+    padding: rem(16px);
+    border: solid 1px $gray-400;
+    gap: 16px;
+    @include border-radius(2px);
+  }
+  &__label {
+    font-weight: $medium;
+  }
+  &__submit {
+    justify-self: end;
+  }
+}

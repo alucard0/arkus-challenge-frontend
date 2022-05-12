@@ -16,6 +16,7 @@ import UserForm from './views/users/userForm'
 import Accounts from './views/accounts'
 import AccountForm from './views/accounts/accountForm'
 import Teams from './views/teams'
+import Profile from './views/profile'
 
 import reportWebVitals from './reportWebVitals'
 
@@ -35,7 +36,7 @@ render(
               }
             >
               <Route path="dashboard" element={<p>home</p>} />
-              <Route path="profile" element={<p>profile</p>} />
+              <Route path="profile" element={<Profile />} />
               <Route path="users" element={<Users />} />
               <Route path="users/new" element={<UserForm />} />
               <Route path="users/:email/edit" element={<UserForm />} />
