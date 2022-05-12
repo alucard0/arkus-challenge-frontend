@@ -17,7 +17,7 @@ const Login = ({ loginInformation, fetchToken }) => {
     password: 'test',
   })
   const { email, password } = userData
-  let from = '/dashboard'
+  let from = '/profile'
   const hasError = !!loginInformation.errors.length > 0
   const errorMessage = hasError ? loginInformation.errors : ''
 

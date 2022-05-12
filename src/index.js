@@ -35,7 +35,6 @@ render(
                 </RequireAuth>
               }
             >
-              <Route path="dashboard" element={<p>home</p>} />
               <Route path="profile" element={<Profile />} />
               <Route path="users" element={<Users />} />
               <Route path="users/new" element={<UserForm />} />

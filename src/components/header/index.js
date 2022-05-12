@@ -67,7 +67,9 @@ const Header = () => {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{
+        justifyContent: 'space-between'
+  }}>
         <Toolbar disableGutters>
           <GeneralMenu
             handleCloseNavMenu={handleCloseNavMenu}
