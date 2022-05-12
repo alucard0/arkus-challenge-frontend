@@ -4,6 +4,7 @@ import userReducer from '../views/users/userSlice'
 import accountReducer from '../views/accounts/accountSlice'
 import managerReducer from '../views/accounts/accountForm/manager/managerSlice'
 import teamReducer from '../views/teams/teamSlice'
+import alertReducer from '@components/alert/alertSlice'
 
 
 export default configureStore({
@@ -12,6 +13,7 @@ export default configureStore({
     users: userReducer,
     account: accountReducer,
     manager: managerReducer,
-    teams:  teamReducer
+    teams:  teamReducer,
+    notifications: alertReducer
   }
 })

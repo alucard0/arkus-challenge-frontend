@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { createUser, fetchSingleUser, resetUser, updateSingleUser } from '../userSlice'
 import { isEmptyObject } from '@utils'
+import { createAlert } from '@components/alert/alertSlice'
 
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -17,6 +18,7 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
   const [newUser, setNewUser] = useState({
     ...user,
   })
+  const dispatch = useDispatch()
   const { name, email, password, english_level, url_cv, tech_knowledge, role } = newUser
   const englishLevelKeys = Object.keys(ENGLISH_LEVELS)
   const roleKeys = Object.keys(USER_ROLES)
@@ -48,10 +50,24 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
     event.preventDefault()
     if (isCreate) {
       createUser(newUser).then(() => {
+        dispatch(
+          createAlert({
+            message: 'User created',
+            type: 'success',
+          }),
+        )
         navigate(-1)
       })
     } else {
-      updateSingleUser(newUser)
+      updateSingleUser(newUser).then(() => {
+        dispatch(
+          createAlert({
+            message: 'User updated',
+            type: 'success',
+          }),
+        )
+        navigate(-1)
+      })
     }
   }
 

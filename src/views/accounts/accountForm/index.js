@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import {
   createAccount,
   fetchSingleAccount,
   resetAccount,
   updateSingleAccount,
 } from '../accountSlice'
+import { createAlert } from '@components/alert/alertSlice'
 import { isEmptyObject } from '@utils'
 
 import TextField from '@mui/material/TextField'
@@ -40,6 +41,7 @@ const AccountForm = ({
   const { name: teamName, members } = newTeam
   const { name, client_name: clientName, has_team: hasTeam } = newAccount
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const params = useParams()
   const isCreate = isEmptyObject(params)
   const title = isCreate ? 'Create new account' : 'Edit account'
@@ -82,10 +84,24 @@ const AccountForm = ({
     event.preventDefault()
     if (isCreate) {
       createAccount(newAccount, newManager, newTeam).then(() => {
+        dispatch(
+          createAlert({
+            message: 'Account created',
+            type: 'success',
+          }),
+        )
         navigate(-1)
       })
     } else {
-      updateSingleAccount(newAccount, newManager , newTeam)
+      updateSingleAccount(newAccount, newManager, newTeam).then(() => {
+        dispatch(
+          createAlert({
+            message: 'Account updated',
+            type: 'success',
+          }),
+        )
+        navigate(-1)
+      })
     }
   }
 
