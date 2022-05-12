@@ -67,9 +67,11 @@ const Header = () => {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl" sx={{
-        justifyContent: 'space-between'
-  }}>
+      <Container
+        maxWidth="xl"
+        sx={{
+          justifyContent: 'space-between',
+        }}>
         <Toolbar disableGutters>
           <GeneralMenu
             handleCloseNavMenu={handleCloseNavMenu}
@@ -77,7 +79,7 @@ const Header = () => {
             handleOpenNavMenu={handleOpenNavMenu}
             anchorNav={anchorNav}
           />
-          <ProfileMenu 
+          <ProfileMenu
             handleCloseUserMenu={handleCloseUserMenu}
             handleOpenUserMenu={handleOpenUserMenu}
             handleUserMenu={handleUserMenu}
