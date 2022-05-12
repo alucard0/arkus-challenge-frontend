@@ -34,12 +34,7 @@ buena [referencia](https://www.instagram.com/p/CKLjgarAEh2/)
 ## Guía de Instalación
 Realiza los pasos indicados en el archivo [INSTALLATION](INSTALLATION.md)
 ## Ejecución
-
-```shell
-make start
-```
-
-En el caso de Windows
+Windows
 
 ```shell
 npm start
@@ -52,18 +47,5 @@ Ahora se puede visitar el proyecto en <http://localhost:3000> o bien <http://0.0
 Ejecutar el comando para hacer el build de la app
 
 ```shell
-make build
+npm install
 ```
-En mi caso lo subí a firebase, para subirlo ejecutar el siguiente comando
-
-```shell
-firebase deploy
-```
-
-Se puede visitar en [Live](https://parrot-344618.web.app/)
-## Notas
-
-Me hizo falta implementar:
-  - El manejo de errores
-  - Test
-  - Reflejar las actualizaciones en tiempo real si el cambio viene de back si es que no lo ha mandado el front

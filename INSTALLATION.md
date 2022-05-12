@@ -14,11 +14,5 @@
 Finalmente ejecuta el comando:
 
 ```shell
-make setup
-```
-
-En el caso de Windows
-
-```shell
 npm install
 ```
