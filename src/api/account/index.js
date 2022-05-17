@@ -7,9 +7,6 @@ export default class Account {
   static GetSingleAccount(id) {
     return Get(`/account/${id}`)
   }
-  static GetAssignedAccounts() {
-    return Get('/account/assigned_accounts')
-  }
   static CreateAccount(account) {
     return Post('/account', account)
   }
