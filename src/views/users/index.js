@@ -13,9 +13,9 @@ const Users = ({ users, fetchUsers }) => {
     fetchUsers()
   }, [])
 
-  const handleNewUser  =()=>{
+  const handleNewUser = () => {
     navigate('/users/new')
-  } 
+  }
 
   return (
     <div className="users__layout">
@@ -25,7 +25,8 @@ const Users = ({ users, fetchUsers }) => {
         size="medium"
         onClick={handleNewUser}
         data-testid="button_new_user"
-        variant="contained">
+        variant="contained"
+      >
         New user
       </Button>
       <UserList users={users} />

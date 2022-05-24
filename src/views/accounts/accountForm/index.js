@@ -141,7 +141,8 @@ const AccountForm = ({
             aria-labelledby="team-configuration"
             name="team-configuration-chooser"
             value={hasTeam}
-            onChange={onChangeFields('has_team')}>
+            onChange={onChangeFields('has_team')}
+          >
             <FormControlLabel value="true" control={<Radio />} label="Yes" />
             <FormControlLabel value="false" control={<Radio />} label="No" />
           </RadioGroup>
@@ -164,7 +165,8 @@ const AccountForm = ({
             onClick={handleCancel}
             data-testid="button_submit"
             variant="contained"
-            className="accounts__form-submit">
+            className="accounts__form-submit"
+          >
             Cancel
           </Button>
           <Button
@@ -173,7 +175,8 @@ const AccountForm = ({
             size="medium"
             data-testid="button_submit"
             variant="contained"
-            className="accounts__form-submit">
+            className="accounts__form-submit"
+          >
             {primaryButtonText}
           </Button>
         </div>

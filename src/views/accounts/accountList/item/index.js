@@ -3,7 +3,7 @@ import React from 'react'
 import Delete from './delete'
 import Edit from './edit'
 
-const Item = ({ name: accountName, client_name: clientName, id, manager_name:managerName }) => (
+const Item = ({ name: accountName, client_name: clientName, id, manager_name: managerName }) => (
   <div className="accounts__item">
     <div className="accounts__information">
       <p>

@@ -121,7 +121,8 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
             value={english_level}
             label="English level"
             onChange={onChangeFields('english_level')}
-            data-testid="english_level">
+            data-testid="english_level"
+          >
             {englishLevelKeys.map((key) => (
               <MenuItem key={key} value={key}>
                 {ENGLISH_LEVELS[key]}
@@ -148,7 +149,8 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
             value={role}
             label="Role"
             onChange={onChangeFields('role')}
-            data-testid="role">
+            data-testid="role"
+          >
             {roleKeys.map((key) => (
               <MenuItem key={key} value={key}>
                 {USER_ROLES[key]}
@@ -179,7 +181,8 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
             onClick={handleCancel}
             data-testid="button_submit"
             variant="contained"
-            className="users__form-submit">
+            className="users__form-submit"
+          >
             Cancel
           </Button>
           <Button
@@ -188,7 +191,8 @@ const UserForm = ({ createUser, fetchSingleUser, user, resetUser, updateSingleUs
             size="medium"
             data-testid="button_submit"
             variant="contained"
-            className="users__form-submit">
+            className="users__form-submit"
+          >
             {primaryButtonText}
           </Button>
         </div>

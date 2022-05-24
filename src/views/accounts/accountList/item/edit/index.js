@@ -17,7 +17,8 @@ const Edit = ({ id }) => {
       type="button"
       size="medium"
       data-testid="button_edit"
-      variant="contained">
+      variant="contained"
+    >
       Edit
     </Button>
   )

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 
 export const useLocalStorage = (key, defaultValue = null) => {
-
   const [value, setValue] = useState(() => {
     try {
       const saved = localStorage.getItem(key)
@@ -15,8 +14,8 @@ export const useLocalStorage = (key, defaultValue = null) => {
     }
   })
   useEffect(() => {
-      const rawValue = JSON.stringify(value)
-      localStorage.setItem(key, rawValue)
+    const rawValue = JSON.stringify(value)
+    localStorage.setItem(key, rawValue)
   }, [key, value])
 
   return [value, setValue]

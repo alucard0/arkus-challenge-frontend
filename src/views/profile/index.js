@@ -86,7 +86,8 @@ const Profile = ({ fetchSingleUser, updateSingleUser, resetUser, user }) => {
           size="medium"
           data-testid="button_submit"
           variant="contained"
-          className="profile__submit">
+          className="profile__submit"
+        >
           Save
         </Button>
       </form>

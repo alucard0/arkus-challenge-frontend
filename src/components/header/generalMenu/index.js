@@ -26,7 +26,8 @@ const GeneralMenu = ({ handleOpenNavMenu, handleCloseNavMenu, handleMenuLinks, a
         variant="h6"
         noWrap
         component="div"
-        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
+        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+      >
         LOGO
       </Typography>
       {!isRegularUser && (
@@ -37,7 +38,8 @@ const GeneralMenu = ({ handleOpenNavMenu, handleCloseNavMenu, handleMenuLinks, a
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleOpenNavMenu}
-            color="inherit">
+            color="inherit"
+          >
             <MenuIcon />
           </IconButton>
           <Menu
@@ -56,7 +58,8 @@ const GeneralMenu = ({ handleOpenNavMenu, handleCloseNavMenu, handleMenuLinks, a
             onClose={handleCloseNavMenu}
             sx={{
               display: { xs: 'block', md: 'none' },
-            }}>
+            }}
+          >
             {pages.map(({ text, id }) => (
               <MenuItem key={id} onClick={() => handleMenuLinks(id)}>
                 <Typography textAlign="center">{text}</Typography>
@@ -70,7 +73,8 @@ const GeneralMenu = ({ handleOpenNavMenu, handleCloseNavMenu, handleMenuLinks, a
         variant="h6"
         noWrap
         component="div"
-        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+      >
         LOGO
       </Typography>
       {!isRegularUser && (
@@ -79,7 +83,8 @@ const GeneralMenu = ({ handleOpenNavMenu, handleCloseNavMenu, handleMenuLinks, a
             <Button
               key={id}
               onClick={() => handleMenuLinks(id)}
-              sx={{ my: 2, color: 'white', display: 'block' }}>
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
               {text}
             </Button>
           ))}

@@ -2,18 +2,18 @@ import { createSlice } from '@reduxjs/toolkit'
 import API from '@api/team'
 
 export const teamSlice = createSlice({
-  name:'teams',
-  initialState:{
-    teamList:[]
+  name: 'teams',
+  initialState: {
+    teamList: [],
   },
   reducers: {
     setTeamList: (state, action) => {
       state.teamList = [...action.payload]
-    }
-  }
+    },
+  },
 })
 
-export const fetchTeams = () =>{
+export const fetchTeams = () => {
   return async (dispatch) => {
     await API.GetAll()
       .then(({ data }) => {

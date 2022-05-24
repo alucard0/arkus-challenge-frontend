@@ -34,7 +34,8 @@ const ProfileMenu = ({ handleOpenUserMenu, handleCloseUserMenu, handleUserMenu, 
         horizontal: 'right',
       }}
       open={Boolean(anchorUser)}
-      onClose={handleCloseUserMenu}>
+      onClose={handleCloseUserMenu}
+    >
       {settings.map(({ text, id }) => (
         <MenuItem key={id} onClick={() => handleUserMenu(id)}>
           <Typography textAlign="center">{text}</Typography>

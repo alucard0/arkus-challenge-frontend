@@ -28,7 +28,7 @@ export const userSlice = createSlice({
     },
     resetUser: (state, action) => {
       state.user = { ...defaultUser }
-    }
+    },
   },
 })
 

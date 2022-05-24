@@ -2,18 +2,18 @@ import React from 'react'
 
 import Item from './item'
 
-const UserList =({users})=>{
-  const emptyUsers =  users.length === 0
+const UserList = ({ users }) => {
+  const emptyUsers = users.length === 0
 
-  if(emptyUsers){
+  if (emptyUsers) {
     return <p>Users not found</p>
   }
 
-  return(
+  return (
     <div className="users__list">
-      {
-        users.map((user)=><Item key={user.email} {...user} />)
-      }
+      {users.map((user) => (
+        <Item key={user.email} {...user} />
+      ))}
     </div>
   )
 }

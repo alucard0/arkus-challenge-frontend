@@ -46,7 +46,8 @@ const Item = ({
       <Button
         variant="text"
         className="teams__profile-button"
-        onClick={() => setProfile(!showProfile)}>
+        onClick={() => setProfile(!showProfile)}
+      >
         {buttonText}
       </Button>
     </div>

@@ -71,7 +71,8 @@ const Header = () => {
         maxWidth="xl"
         sx={{
           justifyContent: 'space-between',
-        }}>
+        }}
+      >
         <Toolbar disableGutters>
           <GeneralMenu
             handleCloseNavMenu={handleCloseNavMenu}

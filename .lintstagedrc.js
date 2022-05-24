@@ -1,5 +1,5 @@
 module.exports = {
-  "./src/*.{js,jsx,ts,tsx}": [
+  "./src/**/*.{js,jsx,ts,tsx}": [
     "npx prettier --write src/**/*.js",
     "eslint src/**/*.js --fix-dry-run"
   ],

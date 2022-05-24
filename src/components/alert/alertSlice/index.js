@@ -10,7 +10,7 @@ export const alertSlice = createSlice({
       state.alerts.push({
         message: action.payload.message,
         type: action.payload.type,
-        timeOut: action.payload.timeOut || 4000
+        timeOut: action.payload.timeOut || 4000,
       })
     },
   },

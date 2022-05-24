@@ -32,14 +32,16 @@ const Delete = ({ id, deleteAccount, accountName }) => {
         size="medium"
         onClick={handleClickOpen}
         data-testid="button_delete"
-        variant="contained">
+        variant="contained"
+      >
         Delete
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description">
+        aria-describedby="alert-dialog-description"
+      >
         <DialogTitle id="alert-dialog-title">{'Delete user'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

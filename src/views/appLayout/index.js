@@ -8,7 +8,7 @@ const AppLayout = () => (
   <>
     <Header text={'test'} />
     <Outlet />
-    <AlertArea/>
+    <AlertArea />
   </>
 )
 

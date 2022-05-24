@@ -29,7 +29,9 @@ const request = (method, endpoint, params, data) => {
     case 'POST':
       return axios.post(url, JSON.stringify(data)).catch(handleServerErrors)
     case 'GET':
-      return !!params ? axios.get(url, {params:params}).catch(handleServerErrors) : axios.get(url).catch(handleServerErrors)
+      return !!params
+        ? axios.get(url, { params: params }).catch(handleServerErrors)
+        : axios.get(url).catch(handleServerErrors)
     case 'PUT':
       return axios.put(url, data).catch(handleServerErrors)
     case 'DELETE':

@@ -3,8 +3,8 @@ import User from '@api/user'
 
 const initialState = {
   token: '',
-  role:'',
-  email:'',
+  role: '',
+  email: '',
   errors: '',
 }
 export const loginSlice = createSlice({
@@ -30,11 +30,11 @@ export const fetchToken = (userData) => {
   return async (dispatch) => {
     await User.Login(userData)
       .then(({ data }) => {
-        const { token, message, role,email } = data
+        const { token, message, role, email } = data
         if (!!message) {
           dispatch(setErrors(message))
         } else {
-          dispatch(setLoginInfo({ token, role,email }))
+          dispatch(setLoginInfo({ token, role, email }))
         }
       })
       .catch((error) => {
