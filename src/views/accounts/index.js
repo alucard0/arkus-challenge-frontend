@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import AccountList from './accountList'
 import Button from '@mui/material/Button'
 
-const Accounts = ({ accountList, fetchAccounts }) => {
+const Accounts =({ accountList, fetchAccounts })=>{
   let navigate = useNavigate()
 
   useEffect(() => {
