@@ -17,6 +17,24 @@ const Accounts =({ accountList, fetchAccounts })=>{
     navigate('/accounts/new')
   } 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <div className="accounts__layout">
       <Button
