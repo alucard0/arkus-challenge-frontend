@@ -7,6 +7,7 @@ Para desarrollo utiliza
 - [React](https://github.com/facebook/react)
 - [Redux](https://redux.js.org/introduction/installation)
 - [MUI](https://mui.com/)
+- [Docker](https://docs.docker.com/desktop/windows/install/)
 
 El proyecto tiene las siguientes dependencias de desarrollo para garantizar el
 estandar en el código.
@@ -37,11 +38,15 @@ Realiza los pasos indicados en el archivo [INSTALLATION](INSTALLATION.md)
 Windows
 
 ```shell
-npm start
+docker-compose up
 ```
 
-Ahora se puede visitar el proyecto en <http://localhost:3000> o bien <http://0.0.0.0:3000>
+Ahora se puede visitar el proyecto en <http://localhost:4000>
 
+## Dentener el proyecto
+```shell
+docker-compose down -v  
+```
 ## Deploy
 
 Ejecutar el comando para hacer el build de la app
