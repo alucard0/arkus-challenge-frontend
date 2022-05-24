@@ -65,5 +65,10 @@
     "sass": "^1.49.9",
     "stylelint": "14.6.0",
     "stylelint-order": "5.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged --allow-empty -c ./.lintstagedrc.js"
+    }
   }
 }

@@ -33,7 +33,6 @@ const Accounts =({ accountList, fetchAccounts })=>{
 
 
 
-
   return (
     <div className="accounts__layout">
       <Button
