@@ -1,4 +1,4 @@
-# Parrot Challenge
+# Arkus Challenge
 
 ## Características
 El proyecto tiene las siguientes características:
